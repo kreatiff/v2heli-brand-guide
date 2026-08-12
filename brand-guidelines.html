@@ -256,6 +256,37 @@ body {
   font-size: 16px;
 }
 
+/* ---------- Downloads ---------- */
+.download-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+@media (max-width: 760px) { .download-grid { grid-template-columns: 1fr; } }
+.download-card {
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.download-card .t-h4 { margin: 0; }
+.download-card .t-small.download-desc { color: var(--gray-700); flex-grow: 1; }
+.download-meta { color: var(--gray-500); }
+.download-btn {
+  align-self: flex-start;
+  background: var(--lime);
+  color: var(--ink);
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.download-btn.outline {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--gray-300);
+}
+
 /* ---------- Colour swatches ---------- */
 .swatch-stack { display: flex; flex-direction: column; gap: 20px; }
 .swatch {
@@ -420,6 +451,7 @@ body {
       <li><a href="#type">Type</a></li>
       <li><a href="#voice">Voice</a></li>
       <li><a href="#usage">In use</a></li>
+      <li><a href="#downloads">Downloads</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
@@ -997,6 +1029,36 @@ body {
         <a href="#usage" class="mockup-cta">Book a flight</a>
       </div>
       <p class="mockup-caption t-small">Logo left, navigation centred or right, one lime call to action. No more than one lime element per view so it keeps its punch.</p>
+    </div>
+  </section>
+
+  <section class="section section-light" id="downloads">
+    <div class="section-inner">
+      <div class="section-head">
+        <span class="eyebrow-onlight t-label">08 / Downloads</span>
+        <h2 class="t-h2">Downloads</h2>
+        <p class="t-body">Logo files, the display face and the body font, ready to drop into other tools.</p>
+      </div>
+      <div class="download-grid">
+        <div class="download-card">
+          <span class="t-h4">Logo files</span>
+          <p class="t-small download-desc">All three lockups (horizontal, stacked, logomark) plus black-and-white variants, in SVG and PNG.</p>
+          <span class="t-label download-meta">ZIP, SVG + PNG</span>
+          <a class="download-btn" href="v2heli-logo-files.zip" download>Download logo pack</a>
+        </div>
+        <div class="download-card">
+          <span class="t-h4">Display face</span>
+          <p class="t-small download-desc">The custom wordmark typeface. Logotype only, capital letters, not for setting other text.</p>
+          <span class="t-label download-meta">TTF, V2heliDisplay Regular</span>
+          <a class="download-btn" href="fonts/V2helidisplay-Regular.ttf" download>Download font</a>
+        </div>
+        <div class="download-card">
+          <span class="t-h4">Space Grotesk</span>
+          <p class="t-small download-desc">The body and UI typeface, weights 300 to 700. Hosted and licensed by Google Fonts.</p>
+          <span class="t-label download-meta">Variable font, Google Fonts</span>
+          <a class="download-btn outline" href="https://fonts.google.com/specimen/Space+Grotesk" target="_blank" rel="noopener">Open in Google Fonts</a>
+        </div>
+      </div>
     </div>
   </section>
 

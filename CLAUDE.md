@@ -17,8 +17,19 @@ again).
 - `PNG/` — raster exports of the same three lockups at 0.5x/1x/2x.
 - `spacing_horizontal.png`, `spacing_vertical.png` — client-exported clear
   space diagrams, used as-is (embedded) in the Logo section.
+- `fonts/V2helidisplay-Regular.ttf` — the display face as an actual font
+  file. Not used anywhere for rendering the page (Space Grotesk is the only
+  `@font-face`); it exists purely so the Downloads section has something to
+  link to.
+- `v2heli-logo-files.zip` — a bundle of `SVG/` + `PNG/` (all files, no
+  `desktop.ini`) for the "Download logo pack" link in Downloads. Regenerate
+  it whenever a logo file is added, removed or replaced; it is not built
+  automatically. Built with `Compress-Archive` (PowerShell) via a staging
+  dir so Windows `desktop.ini` cruft doesn't end up inside it.
 
-No `package.json`, no git repo. It's one file plus its source assets.
+No `package.json`. Git repo: pushed to
+[github.com/kreatiff/v2heli-brand-guide](https://github.com/kreatiff/v2heli-brand-guide)
+(public, for GitHub Pages).
 
 ## Hard constraints (do not relax without asking)
 
@@ -36,6 +47,12 @@ No `package.json`, no git repo. It's one file plus its source assets.
   flips `.ink` to white, `on-lime` keeps `.ink` as ink. This is how one SVG
   works on white, charcoal and lime without duplicate files. Follow this
   pattern for any new logo placement instead of hardcoding fills.
+- The "no relative links, base64 only" rule is about assets *rendered on
+  the page* (images, fonts). The Downloads section (`#downloads`) is the one
+  deliberate exception: it links out to real files (`v2heli-logo-files.zip`,
+  `fonts/V2helidisplay-Regular.ttf`) with plain relative `<a href download>`
+  tags, since those are meant to be downloaded, not displayed. Don't inline
+  those as data URIs.
 
 ## Brand facts (from the source PDF, treat as ground truth)
 
