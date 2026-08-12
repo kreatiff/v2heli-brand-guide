@@ -192,6 +192,12 @@ body {
 .hero-inner .t-body { max-width: 560px; color: var(--gray-300); margin-top: 18px; }
 .hero-meta { margin-top: 40px; display: flex; gap: 32px; flex-wrap: wrap; }
 .hero-meta div .t-label { color: var(--lime); display: block; margin-bottom: 4px; }
+@media (max-width: 1100px) {
+  .hero-lime { width: 36%; clip-path: polygon(48% 0, 100% 0, 100% 100%, 18% 100%); }
+  .hero-inner { max-width: 58%; }
+  .hero-mark { width: min(400px, 52vw); }
+  .hero-scale-label { white-space: normal; }
+}
 .hero-inner > * { animation: reveal-up 0.7s cubic-bezier(0.16,0.84,0.44,1) both; }
 .hero-inner > *:nth-child(1) { animation-delay: 0.05s; }
 .hero-inner > *:nth-child(2) { animation-delay: 0.16s; }
