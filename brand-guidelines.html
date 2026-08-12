@@ -354,8 +354,9 @@ body {
 }
 
 /* ---------- Downloads ---------- */
-.download-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-@media (max-width: 760px) { .download-grid { grid-template-columns: 1fr; } }
+.download-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+@media (max-width: 900px) { .download-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .download-grid { grid-template-columns: 1fr; } }
 .download-card {
   background-color: var(--gray-100);
   clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
@@ -367,6 +368,7 @@ body {
 .download-grid .reveal-io:nth-child(1) { transition-delay: 0ms; }
 .download-grid .reveal-io:nth-child(2) { transition-delay: 100ms; }
 .download-grid .reveal-io:nth-child(3) { transition-delay: 200ms; }
+.download-grid .reveal-io:nth-child(4) { transition-delay: 300ms; }
 .download-card .t-h4 { margin: 0; }
 .download-card .t-small.download-desc { color: var(--gray-700); flex-grow: 1; }
 .download-meta { color: var(--gray-500); }
@@ -1148,9 +1150,15 @@ body {
       <div class="section-head">
         <span class="eyebrow-onlight t-label">08 / Downloads</span>
         <h2 class="t-h2">Downloads</h2>
-        <p class="t-body">Logo files, the display face and the body font, ready to drop into other tools.</p>
+        <p class="t-body">Logo files, the display face, the body font and a printable PDF edition of this guide, ready to drop into other tools.</p>
       </div>
       <div class="download-grid">
+        <div class="download-card reveal-io">
+          <span class="t-h4">Print / PDF edition</span>
+          <p class="t-small download-desc">This whole guide as a 14-page A4 landscape PDF: cover, contents and one page per section, designed for print.</p>
+          <span class="readout download-meta">PDF, 14 pages, A4 landscape</span>
+          <a class="download-btn" href="V2-Helicopters-Brand-Guidelines.pdf" download>Download PDF</a>
+        </div>
         <div class="download-card reveal-io">
           <span class="t-h4">Logo files</span>
           <p class="t-small download-desc">All three lockups (horizontal, stacked, logomark) plus black-and-white variants, in SVG and PNG.</p>

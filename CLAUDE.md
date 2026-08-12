@@ -26,6 +26,38 @@ again).
   it whenever a logo file is added, removed or replaced; it is not built
   automatically. Built with `Compress-Archive` (PowerShell) via a staging
   dir so Windows `desktop.ini` cruft doesn't end up inside it.
+- `V2-Helicopters-Brand-Guidelines.pdf` — a separately designed print/PDF
+  edition of the same brand guide: 14 pages, A4 landscape, cover + contents
+  + one page per nav section (Logo and Typography span multiple pages since
+  they carry more content). This is NOT the webpage printed to PDF — it's a
+  dedicated layout (fixed-size `.page` canvases, its own print type scale,
+  running header/footer with page numbers, big mono section-number
+  watermarks) that reuses the same design tokens, chamfer/bracket-frame/
+  mono-readout system, and logo SVGs as `brand-guidelines.html`.
+- `brand-guidelines-print.html` — the source for the PDF above. Self-
+  contained like the main file (same embedded font, same inlined images),
+  but built from `pdf-export/template.html` (styles + shared SVG
+  `<symbol>`/`<use>` defs) + `pdf-export/pages.html` (the 14 pages) rather
+  than hand-edited directly. Don't edit this file by hand — edit the
+  `pdf-export/` sources and rebuild, or your changes will be lost next
+  rebuild.
+- `pdf-export/` — the print edition's source + build scripts:
+  `template.html` (CSS/tokens/symbols), `pages.html` (the 14 pages),
+  `build.py` (assembles both + the font/photo/clear-space base64 pulled
+  live from `brand-guidelines.html` into `brand-guidelines-print.html`),
+  `render.py` (prints that HTML to the PDF via Playwright, launched against
+  the local Chrome install with `channel="chrome"` — no browser download,
+  but does need `pip install playwright`). Regenerate with:
+  `python pdf-export/build.py && python pdf-export/render.py`.
+  Gotcha: SVG `<use>` referencing a shared `<symbol>` does NOT let outside
+  CSS reach in with descendant selectors (`.on-dark .logo-svg .ink` never
+  matches, even though the identical-looking pattern works fine in the
+  main file where SVGs are inlined directly). Colour switching in
+  `pdf-export/template.html` instead uses bare class selectors (`.ink`,
+  `.lime`) plus an inheritable `--ink-fill` custom property set by
+  `.on-dark`/`.on-lime` on an ancestor — custom properties do cross the
+  `<use>` shadow boundary. If you add a new on-dark/on-lime logo placement
+  in the print pages and it renders black-on-black, this is why.
 
 No `package.json`. Git repo: pushed to
 [github.com/kreatiff/v2heli-brand-guide](https://github.com/kreatiff/v2heli-brand-guide)
@@ -126,6 +158,16 @@ also mine, not the client's, layered on top of their actual colours/type/logo
 facts. It's a legitimate interpretation of "Precise, Skilled, Engineered" from
 their own personality list, but it's still an interpretation, flag it if the
 client has a different visual reference in mind.
+
+The print/PDF edition (`V2-Helicopters-Brand-Guidelines.pdf`,
+`pdf-export/`) is entirely mine on top of that: the A4-landscape format,
+the cover/contents/back-cover pages, the running header/footer and
+big mono section-number watermarks, and the reworded Downloads page
+(source files "requested from your project lead" instead of the
+website's live download buttons, since a static PDF can't host a zip
+download). None of that is client-specified — flag it if they expected
+something closer to a literal print of the webpage, a portrait format,
+or different page breaks.
 
 ## Loose ends
 
