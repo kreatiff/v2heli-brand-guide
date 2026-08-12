@@ -54,6 +54,54 @@ No `package.json`. Git repo: pushed to
   tags, since those are meant to be downloaded, not displayed. Don't inline
   those as data URIs.
 
+## Visual design system ("precision instrument" direction)
+
+The page went through a deliberate visual refresh (2026-08) to move away from
+generic SaaS-template aesthetics (uniform 10px-radius cards, straight section
+bands, pill buttons everywhere) toward a system grounded in the logomark's own
+angular shear and an aviation technical-drawing feel. Follow this system for
+any new UI added to the page rather than reverting to plain rounded rectangles:
+
+- **Chamfered panels, not rounded rectangles.** Every card-like surface
+  (`.logo-tile`, `.clearspace-card`, `.callout`, `.dont-card`,
+  `.download-card`, `.overview-photo`, `.font-specimen-logo`, `.voice-col`,
+  `.mockup`) uses a `clip-path` polygon that cuts one or two corners at an
+  angle instead of `border-radius`. The chamfer size scales with the
+  element (~14px for small chips, ~28-32px for large tiles). `.swatch` uses
+  a full parallelogram shear instead, which predates this pass and set the
+  precedent.
+- **Chamfered buttons vs. pill chips.** Actionable buttons/links
+  (`.mockup-cta`, `.download-btn`) get a single-corner chamfer, not
+  `border-radius: 999px`. Non-interactive tags/chips (`.pill` in Brand
+  personality, `.copy-btn` in Colour) stay full pills on purpose, that
+  distinction (chamfer = action, pill = label) is intentional, keep it.
+- **Mono readouts.** `--mono` token (system monospace stack, no new
+  webfont) powers `.readout`, the eyebrow labels (`.eyebrow`,
+  `.eyebrow-onlight`), `.download-meta`, `.swatch-index` and
+  `.footer-text`, standing in for technical/spec-sheet annotations. Keep
+  body copy on Space Grotesk; mono is only for these short UI labels.
+- **Fig. numbering.** `#logo` and its `.logo-tile` elements auto-number via
+  CSS counters (`counter-reset`/`counter-increment`, `Fig. 01`...). If you
+  add or remove a `.logo-tile`, the numbering updates itself, no manual
+  edits needed.
+- **Bracket frame.** `.bracket-frame` draws a 4-corner viewfinder mark via
+  layered `background-image` gradients (no extra markup). Used sparingly,
+  only on the hero wordmark and the Primary logo tile, the two "flagship"
+  moments. Don't apply it to every tile or it stops meaning anything.
+  Gotcha: any element with `.bracket-frame` must set its background via
+  `background-color`, not the `background` shorthand, since the shorthand
+  resets `background-image` and silently deletes the brackets. This bit us
+  once on `.logo-tile-light/-dark/-lime`.
+- **Reveal-on-scroll.** `.reveal-io` + `.in-view` (toggled by an
+  `IntersectionObserver` in the footer `<script>`) fades/rises content into
+  view once per element. The hero instead uses a CSS-only `@keyframes
+  reveal-up` staggered by `nth-child` on `.hero-inner`'s direct children,
+  since it's above the fold and doesn't need scroll triggering. Both
+  respect `prefers-reduced-motion`.
+- Hero also carries a mono coordinate readout (`.hero-tag`, real Brisbane
+  lat/long) and a dimension line with tick end-caps under the wordmark
+  (`.hero-scale`), reinforcing the technical/instrument framing.
+
 ## Brand facts (from the source PDF, treat as ground truth)
 
 - Colours: Velocity Lime `#CADB2B` (CMYK 25/0/100/0), Charcoal `#1A1A1A`
@@ -72,7 +120,12 @@ suggested minimum logo sizes (32px stacked / 120px horizontal), the usage
 "don'ts" grid, the voice-and-tone do/don't section, the nav-bar mockup in
 "In use", and the nearest-Pantone note (Velocity Lime ≈ PMS 382 C, Charcoal ≈
 PMS Neutral Black C — approximate, confirm against a physical swatch book
-before anything goes to print).
+before anything goes to print). The "precision instrument" visual system
+above (chamfered panels, bracket framing, mono readouts, Fig. numbering) is
+also mine, not the client's, layered on top of their actual colours/type/logo
+facts. It's a legitimate interpretation of "Precise, Skilled, Engineered" from
+their own personality list, but it's still an interpretation, flag it if the
+client has a different visual reference in mind.
 
 ## Loose ends
 
