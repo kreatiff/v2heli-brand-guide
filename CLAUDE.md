@@ -117,10 +117,10 @@ any new UI added to the page rather than reverting to plain rounded rectangles:
 These were added while building the page and should be sanity-checked against
 what the client actually wants before treating them as fixed brand rules:
 suggested minimum logo sizes (32px stacked / 120px horizontal), the usage
-"don'ts" grid, the voice-and-tone do/don't section, the nav-bar mockup in
-"In use", and the nearest-Pantone note (Velocity Lime ≈ PMS 382 C, Charcoal ≈
-PMS Neutral Black C — approximate, confirm against a physical swatch book
-before anything goes to print). The "precision instrument" visual system
+"don'ts" grid, the voice-and-tone do/don't section, and the nav-bar mockup in
+"In use". (A nearest-Pantone note used to live in the Colour section, too;
+removed on request, so don't re-add it without asking.) The
+"precision instrument" visual system
 above (chamfered panels, bracket framing, mono readouts, Fig. numbering) is
 also mine, not the client's, layered on top of their actual colours/type/logo
 facts. It's a legitimate interpretation of "Precise, Skilled, Engineered" from
